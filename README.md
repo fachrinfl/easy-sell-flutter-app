@@ -2,12 +2,12 @@
 
 A comprehensive Flutter-based Point of Sale (POS) application with Firebase backend integration, designed for small to medium businesses. Features real-time inventory management, transaction processing, analytics, and cross-platform support.
 
-## 📱 Download & Demo
+## Download & Demo
 
-- **📦 APK Download**: [Download EasySell APK](https://drive.google.com/file/d/1liUgN9hQD0kx9a50quQH4VCL3PHMlXQS/view?usp=drive_link)
-- **🎬 Demo Video**: [Watch App Demo](https://drive.google.com/file/d/1ZmdiKXy_djYtxf7nd3qsNFwYepiCLhH8/view?usp=drive_link)
+- **APK Download**: [Download EasySell APK](https://drive.google.com/file/d/1liUgN9hQD0kx9a50quQH4VCL3PHMlXQS/view?usp=drive_link)
+- **Demo Video**: [Watch App Demo](https://drive.google.com/file/d/1ZmdiKXy_djYtxf7nd3qsNFwYepiCLhH8/view?usp=drive_link)
 
-### 🧪 Demo Account
+### Demo Account
 
 To test the application with pre-populated data, use the following demo account:
 
@@ -21,7 +21,7 @@ This demo account includes:
 - Business analytics and reports
 - Complete POS functionality
 
-## 🚀 Features
+## Features
 
 ### Core Business Features
 
@@ -42,7 +42,7 @@ This demo account includes:
 - **Offline Support**: Local data caching with Hive for improved performance
 - **Modern UI**: Material Design 3 with custom design system and shimmer loading effects
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 lib/
