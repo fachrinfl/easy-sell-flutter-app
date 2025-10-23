@@ -1,0 +1,95 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '14.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+
+      # Remove problematic -G flag that causes the error
+      ['OTHER_CFLAGS', 'OTHER_CPLUSPLUSFLAGS', 'OTHER_LDFLAGS'].each do |flag_name|
+        if config.build_settings[flag_name].is_a?(Array)
+          config.build_settings[flag_name] = config.build_settings[flag_name].reject { |flag| flag == '-G' }
+        elsif config.build_settings[flag_name].is_a?(String)
+          config.build_settings[flag_name] = config.build_settings[flag_name].gsub(/\s*-G\s*/, ' ')
+        end
+      end
+    end
+  end
+  
+  # Fix for BoringSSL-GRPC specific issues
+  installer.pods_project.targets.each do |target|
+    if target.name == 'BoringSSL-GRPC'
+      target.source_build_phase.files.each do |file|
+        if file.settings && file.settings['COMPILER_FLAGS']
+          flags = file.settings['COMPILER_FLAGS'].split
+          flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' }
+          file.settings['COMPILER_FLAGS'] = flags.join(' ')
+        end
+      end
+    end
+  end
+  
+  # Permanent fix for gRPC-Core template argument parsing error
+  installer.pods_project.targets.each do |target|
+    if target.name == 'gRPC-Core'
+      target.build_configurations.each do |config|
+        # The path to the problematic file
+        grpc_file_path = "Pods/gRPC-Core/src/core/lib/promise/detail/basic_seq.h"
+
+        # Check if the file exists
+        if File.exist?(grpc_file_path)
+          file_content = File.read(grpc_file_path)
+
+          # Define the incorrect and corrected lines
+          problematic_line = 'return Traits::template CallSeqFactory(f_, *cur_, std::move(arg));'
+          correct_line = 'return Traits::template CallSeqFactory<>(f_, *cur_, std::move(arg));'
+
+          # Replace the line if the problem exists
+          if file_content.include?(problematic_line)
+            puts "Patching gRPC-Core basic_seq.h for #{config.name} configuration."
+            file_content.gsub!(problematic_line, correct_line)
+            File.open(grpc_file_path, "w") { |file| file.puts file_content }
+          end
+        end
+      end
+    end
+  end
+end

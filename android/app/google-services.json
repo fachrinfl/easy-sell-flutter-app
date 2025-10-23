@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "950519412879",
+    "project_id": "point-of-sale-app-flutter",
+    "storage_bucket": "point-of-sale-app-flutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950519412879:android:6677e9c56c35121ff798fa",
+        "android_client_info": {
+          "package_name": "com.fachrinfl.easysell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950519412879-ma1ai19j8tl1nsou41b24efr92en5e9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMycnAJDQguEcSLVEs7zbHQ_RZvytdmyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950519412879-ma1ai19j8tl1nsou41b24efr92en5e9m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "950519412879-7395o6sklaeial11ads3a9pcagb89h4v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fachrinfl.easysell"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

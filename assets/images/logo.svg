@@ -1,0 +1,31 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="96" cy="96" r="88" fill="#2563EB" stroke="#1D4ED8" stroke-width="4"/>
+  
+  <!-- Inner Circle -->
+  <circle cx="96" cy="96" r="72" fill="#3B82F6" opacity="0.1"/>
+  
+  <!-- POS Terminal Icon -->
+  <rect x="60" y="48" width="72" height="48" rx="8" fill="white"/>
+  <rect x="64" y="52" width="64" height="40" rx="4" fill="#2563EB"/>
+  
+  <!-- Screen Content -->
+  <rect x="68" y="56" width="56" height="8" rx="2" fill="white"/>
+  <rect x="68" y="68" width="40" height="4" rx="1" fill="white"/>
+  <rect x="68" y="76" width="32" height="4" rx="1" fill="white"/>
+  
+  <!-- Dollar Sign -->
+  <text x="96" y="88" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">$</text>
+  
+  <!-- Receipt Lines -->
+  <rect x="68" y="96" width="56" height="2" rx="1" fill="white" opacity="0.8"/>
+  <rect x="68" y="100" width="48" height="2" rx="1" fill="white" opacity="0.6"/>
+  <rect x="68" y="104" width="40" height="2" rx="1" fill="white" opacity="0.4"/>
+  
+  <!-- Card Reader -->
+  <rect x="72" y="108" width="48" height="8" rx="2" fill="white"/>
+  <rect x="76" y="110" width="40" height="4" rx="1" fill="#2563EB"/>
+  
+  <!-- Success Checkmark -->
+  <path d="M84 116 L88 120 L100 108" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
